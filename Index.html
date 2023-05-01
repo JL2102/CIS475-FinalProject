@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <img src="images/NExtBuylogo.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  </head>
+  <body>
+
+    <h1>Next Buy</h1>
+
+    <form id="add-product-form" action="/add-product" method="post">
+        <h2>Add Data</h2>
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" name="product_name"><br>
+        
+        <label for="product-price">Product Price:</label>
+        <input type="text" id="product-price" name="product_price"><br>      
+      
+        <input type="submit" value="Add Product">
+    </form>
+
+    <form action="/remove-product" method="post" name="remove-product-form" id="remove-product-form">
+        <h2>Remove Data</h2>
+        <label for="search-product">Search by Name:</label>
+        <input type="text" id="search-product" name="search_product"><br>
+      
+        <button type="submit">Remove Product</button>
+      </form>
+      
+<br>
+<h2>Display Products</h2>
+<button id="display-button" type="button" form action="http://localhost/displayproduct.php" method="POST"
+>Display Products</button>
+<div id="product-table"></div>
+<script src="ajax.js"></script>
+
+<form id="update-form">
+    <h2>Update Data</h2>
+    <label for="search-product">Search for Product:</label>
+    <input type="text" id="search-product" name="search-product" autocomplete="off"><br>
+  
+    <label for="new-product-name">New Product Name:</label>
+    <input type="text" id="new-product-name" name="new-product-name"><br>
+  
+    <label for="new-product-price">New Product Price:</label>
+    <input type="text" id="new-product-price" name="new-product-price"><br>
+  
+    <button type="submit">Update Product</button>
+  </form>
+  
+
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <img src="NExtBuylogo.png" alt="Next Buy">
+    <meta charset="utf-8">
+    <title>Display Data</title>
+  </head>
+  <body>
+    <h2>Display Data</h2>
+    <button id="display-button" type="button">Display Data</button>
+
+    <table id="product-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(function(product) { %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td><%= product.price %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <script>
+      const displayButton = document.getElementById('display-button');
+      displayButton.addEventListener('click', function() {
+        fetch('/products')
+          .then(response => response.json())
+          .then(data => {
+            const tbody = document.querySelector('#product-table tbody');
+            let html = '';
+            data.forEach(function(product) {
+              html += `<tr>
+                        <td>${product.id}</td>
+                        <td>${product.name}</td>
+                        <td>${product.price}</td>
+                      </tr>`;
+            });
+            tbody.innerHTML = html;
+          })
+          .catch(error => console.error(error));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Remove Product</title>
+  </head>
+  <body>
+    <h2>Remove Data</h2>
+    <% if (products.length > 0) { %>
+      <p>Search Results:</p>
+      <ul>
+        <% products.forEach(function(product) { %>
+          <li>
+            <%= product.name %> - <%= product.price %>
+            <form action="/delete-product" method="post">
+              <input type="hidden" name="product_id" value="<%= product.id %>">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No products found</p>
+    <% } %>
+    <a href="/">Back to Home</a>
+  </body>
+</html>
