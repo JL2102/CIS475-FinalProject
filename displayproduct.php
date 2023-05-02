@@ -4,7 +4,7 @@ include "config.php";
 $showTable = "SELECT * FROM products";
 $result = mysqli_query($conn, $showTable) or die("query error");
 
-echo "<table border='1' cellpadding='5'>";
+echo "<table border cellpadding=3>";
 echo "<tr>";
 echo "<th>ID</th>";
 echo "<th>Name</th>";

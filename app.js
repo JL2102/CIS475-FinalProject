@@ -40,15 +40,42 @@ app.post('/add-product', function(req, res) {
 });
   
 app.post('/remove-product', (req, res) => {
-    const productName = req.body.search_product;
-  
-    // Your code to remove the product based on the name goes here
-    // ...
-  
+  const productName = req.body.search_product;
+  const productId = req.body.search_id;
+
+  let sql = '';
+  let queryParams = [];
+
+  if (productName) {
+    sql = 'DELETE FROM products WHERE Name = ?';
+    queryParams = [productName];
+  } else if (productId) {
+    sql = 'DELETE FROM products WHERE ID = ?';
+    queryParams = [productId];
+  } else {
+    res.status(400).send('Bad request');
+    return;
+  }
+
+  // Execute the SQL query to delete the product
+  connection.query(sql, queryParams, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Internal server error');
+      return;
+    }
+
     // Send a response back to the client
-    res.send(`Product "${productName}" has been removed`);
-    
+    let message = '';
+    if (productName) {
+      message = `Product "${productName}" has been removed`;
+    } else if (productId) {
+      message = `Product with ID "${productId}" has been removed`;
+    }
+    res.send(message);
   });
+});
+
 // handle POST requests to update a product
 app.post('/update-product', (req, res) => {
     const productName = req.body['update-product'];

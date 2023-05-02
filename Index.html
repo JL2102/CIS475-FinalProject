@@ -24,23 +24,35 @@
 
     <form action="/remove-product" method="post" name="remove-product-form" id="remove-product-form">
         <h2>Remove Data</h2>
-        <label for="search-product">Search by Name:</label>
+        <label for="search-id">By ID:</label>
+        <input type="text" id="search-id" name="search_id"><br>
+        
+        <label for="search-product">By Name:</label>
         <input type="text" id="search-product" name="search_product"><br>
-      
         <button type="submit">Remove Product</button>
       </form>
       
 <br>
 <h2>Display Products</h2>
-<button id="display-button" type="button" form action="http://localhost/displayproduct.php" method="POST"
->Display Products</button>
-<div id="product-table"></div>
+<button id="display-button" type="button">Display Products</button>
+<form action="http://localhost/displayproduct.php" method="POST">
+<div>
+  <table id="product-table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>price</th>
+    </tr>
+</table>
+</div>
+</form>
 <script src="ajax.js"></script>
+
 
 <form id="update-form">
     <h2>Update Data</h2>
-    <label for="search-product">Search for Product:</label>
-    <input type="text" id="search-product" name="search-product" autocomplete="off"><br>
+    <label for="search-product">Old Product Name:</label>
+    <input type="text" id="search-product" name="search-product" autocomplete="on"><br>
   
     <label for="new-product-name">New Product Name:</label>
     <input type="text" id="new-product-name" name="new-product-name"><br>

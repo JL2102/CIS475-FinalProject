@@ -1,15 +1,12 @@
-$(document).ready(function() {
-    $("#display-button").click(function() {
-      $.ajax({
-        url: "/displayproduct",
-        type: "GET",
-        dataType: "html",
-        success: function(data) {
-          $("#product-table").html(data);
-        },
-        error: function(xhr, status, error) {
-          console.error("AJAX error: " + status + " - " + error);
-        }
-      });
-    });
-  });
+document.getElementById("display-button").addEventListener("click", function() {
+  // Make AJAX call
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          // Update table with response data
+          document.getElementById("product-table").innerHTML = this.responseText;
+      }
+  };
+  xhttp.open("GET", "displayproduct.php", true);
+  xhttp.send();
+});
