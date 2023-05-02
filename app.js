@@ -22,9 +22,26 @@ connection.connect(function(err) {
   console.log('Connected to the database!');
 });
 
-app.get('/displayproduct', function(req, res) {
-  res.sendFile(__dirname + '/displayproduct.php');
+app.get('/display-products', function(req, res) {
+  // Fetch the data from the database
+  connection.query('SELECT * FROM products', function(err, results) {
+    if (err) throw err;
+
+    // Pass the data to the products.ejs view
+    res.render('products', { products: results });
+  });
 });
+
+
+app.post('/display-products', function(req, res) {
+  const name = req.body.name;
+  const query = "SELECT * FROM products WHERE name = ?";
+  connection.query(query, [name], function(err, rows, fields) {
+    if (err) throw err;
+    res.render('products', { products: rows });
+  });
+});
+
 
 
 // handle POST requests to add a product
@@ -78,15 +95,19 @@ app.post('/remove-product', (req, res) => {
 
 // handle POST requests to update a product
 app.post('/update-product', (req, res) => {
-    const productName = req.body['update-product'];
-    const newProductName = req.body['new-product-name'];
-    const newProductPrice = req.body['new-product-price'];
-    
-    // TODO: perform update operation in database
+  const productName = req.body['update-product'];
+  const newProductName = req.body['new-product-name'];
+  const newProductPrice = req.body['new-product-price'];
   
+  // Perform update operation in database
+  const query = 'UPDATE products SET name = ?, price = ? WHERE name = ?';
+  connection.query(query, [newProductName, newProductPrice, productName], (err, result) => {
+    if (err) throw err;
+    console.log('Product has been updated');
     // redirect back to main page
     res.redirect('/');
   });
+});
 
 
 

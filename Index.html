@@ -33,35 +33,27 @@
       </form>
       
 <br>
+
 <h2>Display Products</h2>
-<button id="display-button" type="button">Display Products</button>
-<form action="http://localhost/displayproduct.php" method="POST">
-<div>
-  <table id="product-table">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>price</th>
-    </tr>
-</table>
-</div>
+<form action="/display-products" method="get">
+  <button id="display-button" type="submit">Display Products</button>
 </form>
 <script src="ajax.js"></script>
 
 
-<form id="update-form">
-    <h2>Update Data</h2>
-    <label for="search-product">Old Product Name:</label>
-    <input type="text" id="search-product" name="search-product" autocomplete="on"><br>
-  
-    <label for="new-product-name">New Product Name:</label>
-    <input type="text" id="new-product-name" name="new-product-name"><br>
-  
-    <label for="new-product-price">New Product Price:</label>
-    <input type="text" id="new-product-price" name="new-product-price"><br>
-  
-    <button type="submit">Update Product</button>
-  </form>
+<form id="update-form" action="/update-product" method="post">
+  <h2>Update Data</h2>
+  <label for="search-product">Old Product Name:</label>
+  <input type="text" id="search-product" name="update-product" autocomplete="on"><br>
+
+  <label for="new-product-name">New Product Name:</label>
+  <input type="text" id="new-product-name" name="new-product-name"><br>
+
+  <label for="new-product-price">New Product Price:</label>
+  <input type="text" id="new-product-price" name="new-product-price"><br>
+
+  <button type="submit">Update Product</button>
+</form>
   
 
   </body>
