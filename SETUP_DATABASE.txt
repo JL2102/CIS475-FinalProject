@@ -1,0 +1,25 @@
+First Download XAMPP Control Panel from here: https://www.apachefriends.org/download.html
+Install XAMPP Control Panel
+
+After Installation Open XAMPP Control Panel and Start the (Apache and MySQL) Services.
+
+Then Go to: http://localhost/phpmyadmin/
+
+And create Database with name "cis475finalproject".
+After creating Database create one table called "products" make 3 entries with the following names: "id" "name" "price"
+
+Ensure that id is int(11)
+Ensure that name is varchar(255)
+Ensure that price is decimal(10,2)
+
+Next, in Visual Studio use these commands to ensure all the required packages are installed:
+npm install 
+
+If not all the modules install use:
+npm install sql express nodejs 
+
+To run the website, use: node app.js
+
+the website should open at: localhost:3000
+
+This projects most updated code can be found at: https://github.com/Siter123/CIS475-FinalProject
